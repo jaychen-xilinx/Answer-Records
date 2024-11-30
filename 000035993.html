@@ -1,0 +1,18 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://support.xilinx.com/s/sfsites/c/resource/community_cssoverride" type="text/css">
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h2>标题</h2>
+000035993 - Versal：Vivado 2023.2 - Advanced IO Wizard - 启用调试端口无效
+<h2>描述</h2>
+<p>在 Advanced IO Wizard 的&ldquo;Advanced&rdquo;（高级）选项卡中，包含&ldquo;Enable Debug Ports&rdquo;（启用调试端口）选项，PG320 中对该选项的描述如下：<br><br>启用该选项时，将显示 ILA 相关的所有调试端口。选中该选项时，将显示&ldquo;debug_bus&rdquo;端口。该调试总线可用于通过 ILA 执行调试<br><br>在 Advanced IO Wizard 中，当&ldquo;Debug_bus&rdquo;实例接地时，存在一个已知问题。&nbsp;</p>
+
+<p><img alt="image.png" src="https://xilinx.file.force.com/servlet/rtaImage?eid=ka04U000000spOI&amp;feoid=00N2E00000Ji4U2&amp;refid=0EM4U000005teoz" style="width: 637px;height: 303px;"></img></p>
+<h2>解决方案</h2>
+<p>要解决此问题，您需要手动连接到 Advanced IO Wizard 中的信号线。&nbsp;<br><br>例如，在&ldquo;Advanced IO Wizard&rdquo;中自定义 IP，在&ldquo;Basic&rdquo;（基本）选项卡中，将应用配置设为&ldquo;Source Synchronous&rdquo;（源同步），将总线方向设为&ldquo;Bidir+ Tx +Rx&rdquo;（双向 + 发射 + 接收），并选中&ldquo;Single strobe&rdquo;（单选通）模式，在&ldquo;Advanced&rdquo;选项卡中勾选&ldquo;Enable Debug Ports&rdquo;（启用调试端口）选项。生成 OOC 并对设计进行综合。&nbsp;<br><br><img alt="image.png" src="https://xilinx.file.force.com/servlet/rtaImage?eid=ka04U000000spOI&amp;feoid=00N2E00000Ji4UI&amp;refid=0EM4U000005tenm" style="width: 597px;height: 379px;"></img><br><br><img alt="image.png" src="https://xilinx.file.force.com/servlet/rtaImage?eid=ka04U000000spOI&amp;feoid=00N2E00000Ji4UI&amp;refid=0EM4U000005teoa" style="width: 604px;height: 398px;"></img></p>
+
+<p>打开已综合的设计时，会出现&ldquo;Setup Debug Core&rdquo;（设置调试核）选项，可用于手动插入 ILA 并从已综合的网表添加所有调试端口。&nbsp;<br><br><img alt="image.png" src="https://xilinx.file.force.com/servlet/rtaImage?eid=ka04U000000spOI&amp;feoid=00N2E00000Ji4UI&amp;refid=0EM4U000005teqH" style="width: 596px;height: 294px;"></img></p>
+</body>
+</html>
